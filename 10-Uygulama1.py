@@ -1,3 +1,5 @@
+# 11.03.2019
+
 # Verilen sayının asal çarpanlarını bulma ve asal olup olmadığını belirleme
 
 a = 0
