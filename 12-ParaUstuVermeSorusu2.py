@@ -1,5 +1,6 @@
 # 12.03.2019
-
+# Bozuk para listesi verilsin. En az sayida bozuk para kullanarak musteriye para ustu verme..
+# Minimum bozuk para sayisini geri dondurme..
 # ParaUstuVermeSorusu nun iyilestirmesi
 
 bozukPara = [1, 5, 10, 25, 50]
