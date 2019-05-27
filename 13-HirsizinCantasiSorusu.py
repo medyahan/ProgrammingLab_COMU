@@ -4,53 +4,49 @@
 
 # Bir hirsizin cantasinin kapasitesi 40 br
 
-class Item(object):
-    def __init__(self, n, v, w, br):
+class item(object):
+    def __init__(self, n, v, w):
         self.name = n
         self.value = v
         self.weight = w
-        self.birim = br
 
-def getItems():
 
-    items = []
+item_1 = item('computer', 200, 20)
+item_2 = item('clock', 175, 10)
+item_3 = item('painting', 90, 9)
+item_4 = item('radio', 20, 4)
+item_5 = item('vase', 50, 2)
+item_6 = item('book', 10, 1)
 
-    items.append(item('Clock', 175, 10, 17.5))
-    items.append(item('Painting', 90, 9, 10))
-    items.append(item('Radio', 20, 4, 5))
-    items.append(item('Vase', 50, 2, 25))
-    items.append(item('Book', 10, 1, 10))
-    items.append(item('Computer', 200, 20, 10))
+item = [item_6, item_5, item_4, item_3, item_2, item_1]
+max_para = 0
+max_agirlik = 20
 
-    return items
+for k in range(len(item) - 1, -1, -1):  # Sondan başlayarak her elemanı dener.
+    agirlik_test = item[k].weight
+    toplam_para = item[k].value
+    i = k
+    while (
+            max_agirlik >= agirlik_test and i >= 0):  # Ağırlığı aşana kadar "k" indisindeki eleman ile kaç para kazanabileceğini hesaplasın.
+        b = i - 1
+        if (b == 0):
+            break
+        if (agirlik_test == max_agirlik):
+            if (max_para < toplam_para):
+                max_para = toplam_para
+                break
+        elif (agirlik_test < max_agirlik):
+            for dene in range(b, -1, -1):
+                if (agirlik_test + item[dene].weight > 20):
 
-def printItems(items):
-    for item in items:
-        print(item.name, item.value)
+                    continue
 
-def sortMyItems(items):
-    return sorted(items, key = lambda item: item.name, reverse = True)
+                elif (agirlik_test + item[dene].weight <= 20):
+                    agirlik_test += item[dene].weight
+                    toplam_para += item[dene].value
 
-def test():
-    items = getItems()
-    printItems(items)
-    print("--------- Sorted Items ---------")
-    items = sortMyItems(items)
-    printItems(items)
+            if (max_para < toplam_para):
+                max_para = toplam_para
+        i -= 1
 
-def getListForBurglar(items, maxWeight):
-    result = []
-    totalValue, totalWeight = 0, 0
-    for i in range(len(items)):
-        if(totalWeight + items[i].weight <= maxWeight):
-            result.append(items[i])
-            totalWeight = totalWeight + items[i].weight
-            totalValue = totalValue + items[i].value
-            return (result, totalValue)
-
-def printResult(items2):
-    for item1 in item2[0]:
-        print(item1.name)
-    print(items2[1])
-
-test()
+print(max_para)
